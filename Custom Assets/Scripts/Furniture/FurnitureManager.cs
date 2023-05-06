@@ -138,6 +138,15 @@ public class FurnitureManager : MonoBehaviour
 
             DragFurniture();
         }
+
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            InstantFurniture();
+        }
+        if(Input.GetKeyDown(KeyCode.A))
+        {
+            InstantWallFurniture();
+        }
     }
 
     //////////////////////////////////////////////////////////////////////

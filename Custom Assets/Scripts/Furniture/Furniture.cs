@@ -64,6 +64,8 @@ public class Furniture : MonoBehaviour
 
     protected List<Collider> rotPanelCollider_Cps = new List<Collider>();
 
+    protected List<Renderer> rotPanelRend_Cps = new List<Renderer>();
+
     public int furnitureTriggeredNum;
 
     #endregion
@@ -104,6 +106,8 @@ public class Furniture : MonoBehaviour
             }
 
             SetEnableOutlines(value);
+
+            SetEnableRotPanelRenderer(value);
 
             // SetEnableRotPanelCollider(!value);
         }
@@ -156,6 +160,8 @@ public class Furniture : MonoBehaviour
 
         SetEnableOutlines(false);
 
+        SetEnableRotPanelRenderer(false);
+
         SetShrinkRoom(room_Cp.wallCoordinates);
 
         // 
@@ -201,6 +207,11 @@ public class Furniture : MonoBehaviour
         foreach(Collider coll_Cp_tp in furnitureRotPanel_GO.GetComponentsInChildren<Collider>())
         {
             rotPanelCollider_Cps.Add(coll_Cp_tp);
+        }
+
+        foreach(Renderer rend_Cp_tp in furnitureRotPanel_GO.GetComponentsInChildren<Renderer>())
+        {
+            rotPanelRend_Cps.Add(rend_Cp_tp);
         }
     }
 
@@ -278,6 +289,15 @@ public class Furniture : MonoBehaviour
         for(int i = 0; i < rotPanelCollider_Cps.Count; i++)
         {
             rotPanelCollider_Cps[i].enabled = flag;
+        }
+    }
+
+    //--------------------------------------------------
+    public void SetEnableRotPanelRenderer(bool flag)
+    {
+        for(int i = 0; i < rotPanelRend_Cps.Count; i++)
+        {
+            rotPanelRend_Cps[i].enabled = flag;
         }
     }
 

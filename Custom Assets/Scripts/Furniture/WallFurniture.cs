@@ -102,6 +102,8 @@ public class WallFurniture : Furniture
         
         SetEnableOutlines(false);
 
+        SetEnableRotPanelRenderer(false);
+
         gameState = GameState_En.Inited;
     }
 
@@ -137,6 +139,11 @@ public class WallFurniture : Furniture
         foreach(Collider coll_Cp_tp in furnitureRotPanel_GO.GetComponentsInChildren<Collider>())
         {
             rotPanelCollider_Cps.Add(coll_Cp_tp);
+        }
+
+        foreach(Renderer rend_Cp_tp in furnitureRotPanel_GO.GetComponentsInChildren<Renderer>())
+        {
+            rotPanelRend_Cps.Add(rend_Cp_tp);
         }
     }
 
