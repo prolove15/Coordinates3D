@@ -82,7 +82,7 @@ namespace cakeslice
 		Material outline3Material;
 		Material outlineEraseMaterial;
 		Shader outlineShader;
-		Shader outlineBufferShader;
+		public Shader outlineBufferShader;
 		[HideInInspector]
 		public Material outlineShaderMaterial;
 		[HideInInspector]

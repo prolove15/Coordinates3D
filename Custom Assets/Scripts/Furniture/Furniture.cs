@@ -56,6 +56,8 @@ public class Furniture : MonoBehaviour
 
     bool m_dragging;
 
+    bool m_focused;
+
     Vector3 rememberPos;
 
     Quaternion rememberRot;
@@ -105,11 +107,20 @@ public class Furniture : MonoBehaviour
                 }
             }
 
+            // SetEnableRotPanelCollider(!value);
+        }
+    }
+
+    public bool focused
+    {
+        get { return m_focused; }
+        set
+        {
+            m_focused = value;
+
             SetEnableOutlines(value);
 
             SetEnableRotPanelRenderer(value);
-
-            // SetEnableRotPanelCollider(!value);
         }
     }
 
@@ -158,12 +169,10 @@ public class Furniture : MonoBehaviour
 
         InitFurnitureRotPanel();
 
-        SetEnableOutlines(false);
-
-        SetEnableRotPanelRenderer(false);
-
         SetShrinkRoom(room_Cp.wallCoordinates);
 
+        focused = false;
+        
         // 
         gameState = GameState_En.Inited;
     }
@@ -269,10 +278,16 @@ public class Furniture : MonoBehaviour
         transform.DORotateQuaternion(targetRot_pr, 0.5f);
     }
 
-    //--------------------------------------------------
-    // protected 
-
     #endregion
+
+    //--------------------------------------------------
+    public void SetEnableFurnitureRenderer(bool flag)
+    {
+        for(int i = 0; i < renderer_Cps.Count; i++)
+        {
+            renderer_Cps[i].enabled = flag;
+        }
+    }
 
     //--------------------------------------------------
     public void SetEnableOutlines(bool flag)

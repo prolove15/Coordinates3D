@@ -57,6 +57,8 @@ public class FurnitureManager : MonoBehaviour
 
     public Furniture holdedFurniture_Cp;
 
+    public Furniture focusedFurniture_Cp;
+
     public FurnitureControlPoint holdedFurnitureCP_Cp;
 
     //-------------------------------------------------- private fields
@@ -250,15 +252,37 @@ public class FurnitureManager : MonoBehaviour
     void DetectHoldedFurniture()
     {
         // 
+        if(Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1))
+        {
+            if(focusedFurniture_Cp)
+            {
+                bool existFocusedFurniture_tp = false;
+
+                RaycastHit rayCH_tp2;
+                if(Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out rayCH_tp2))
+                {
+                    Transform rayCH_Tf_tp = rayCH_tp2.transform.root;
+                    if(rayCH_Tf_tp.tag == "Furniture" || rayCH_Tf_tp.tag == "WallFurniture")
+                    {
+                        if(rayCH_Tf_tp.GetComponent<Furniture>() == focusedFurniture_Cp)
+                        {
+                            existFocusedFurniture_tp = true;
+                        }
+                    }
+                }
+
+                if(!existFocusedFurniture_tp)
+                {
+                    focusedFurniture_Cp.focused = false;
+                    focusedFurniture_Cp = null;
+                }
+            }
+        }
+
         if(!Input.GetMouseButton(0) && !Input.GetMouseButton(1))
         {
             if(isHoldingFurniture)
             {
-                if(holdedFurnitureCP_Cp)
-                {
-                    holdedFurnitureCP_Cp.lockCamRot = false;
-                    holdedFurnitureCP_Cp = null;
-                }
                 holdedFurniture_Cp.dragging = false;
                 holdedFurniture_Cp = null;
                 isHoldingFurniture = false;
@@ -293,6 +317,9 @@ public class FurnitureManager : MonoBehaviour
 
                 holdOffset = rayCH_tp.point - hitedTarget_tp.position;
                 isHoldingFurniture = true;
+
+                focusedFurniture_Cp = holdedFurniture_Cp;
+                focusedFurniture_Cp.focused = true;
             }
         }
     }

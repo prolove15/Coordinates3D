@@ -43,7 +43,7 @@ GameObject:
   m_Component:
   - component: {fileID: 316768419966242558}
   m_Layer: 0
-  m_Name: Walls
+  m_Name: WallsHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -81,7 +81,7 @@ GameObject:
   - component: {fileID: 5904718687772618155}
   - component: {fileID: 968154201711748491}
   m_Layer: 0
-  m_Name: Wall Plane
+  m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -175,6 +175,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3232663481529299726}
+  - component: {fileID: 1935001680}
   m_Layer: 0
   m_Name: Room
   m_TagString: Untagged
@@ -200,6 +201,33 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1935001680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3232663481529299727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8cdede7322eae24aa8d72754b3112b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wallCoordinates:
+  - {x: -5, y: 0, z: -5}
+  - {x: -5, y: 0, z: 5}
+  - {x: 5, y: 0, z: 5}
+  - {x: 5, y: 0, z: -5}
+  room_Tf: {fileID: 3232663481529299726}
+  wallsHolder_Tf: {fileID: 316768419966242558}
+  floor_Tf: {fileID: 7716034624109989631}
+  floorMaterials:
+  - {fileID: 2100000, guid: 50b5bd0edddba6545989e41cab38a589, type: 2}
+  - {fileID: 2100000, guid: 54a248c785aafe341b5efe27c6a140db, type: 2}
+  - {fileID: 2100000, guid: e43e946b951cef949b0cf1927cbc537c, type: 2}
+  gameState: 0
+  wall_Tfs: []
+  wallHeight: 5
 --- !u!1 &3232663482495290568
 GameObject:
   m_ObjectHideFlags: 0
@@ -409,7 +437,7 @@ GameObject:
   - component: {fileID: 3232663482807874322}
   - component: {fileID: 3232663482807874323}
   m_Layer: 0
-  m_Name: Wall Plane (1)
+  m_Name: Zenith
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -618,14 +646,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3232663483076425841}
-  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0.7071068, w: 0}
   m_LocalPosition: {x: 0, y: 2.5, z: -5}
-  m_LocalScale: {x: 1, y: 1, z: 0.5000001}
+  m_LocalScale: {x: 1, y: 1, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 316768419966242558}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 180, z: 0}
 --- !u!33 &3232663483076425845
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -708,7 +736,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3058513466721314421
 Transform:
   m_ObjectHideFlags: 0

@@ -40,6 +40,12 @@ public class Room : MonoBehaviour
     [SerializeField]
     Transform wallsHolder_Tf;
 
+    [SerializeField]
+    Transform floor_Tf;
+
+    [SerializeField]
+    List<Material> floorMaterials = new List<Material>();
+
     //-------------------------------------------------- public fields
     public GameState_En gameState;
 
@@ -50,6 +56,7 @@ public class Room : MonoBehaviour
     public float wallHeight = 5f;
 
     //-------------------------------------------------- private fields
+    MeshRenderer floorMeshR_Cp;
 
     #endregion
 
@@ -77,7 +84,10 @@ public class Room : MonoBehaviour
     //-------------------------------------------------- Update is called once per frame
     void Update()
     {
-        
+        if(Input.GetKeyDown(KeyCode.S))
+        {
+            ChangeFloorMaterial();
+        }
     }
     
     //////////////////////////////////////////////////////////////////////
@@ -89,6 +99,8 @@ public class Room : MonoBehaviour
     public void Init()
     {
         InitOpponents();
+
+        InitVariables();
 
         SetWalls();
 
@@ -105,6 +117,12 @@ public class Room : MonoBehaviour
         controller_Cp = GameObject.FindWithTag("GameController").GetComponent<Controller>();
 
         furnitureManager_Cp = controller_Cp.furnitureManager_Cp;
+    }
+
+    //--------------------------------------------------
+    void InitVariables()
+    {
+        floorMeshR_Cp = floor_Tf.GetComponent<MeshRenderer>();
     }
 
     //--------------------------------------------------
@@ -158,6 +176,19 @@ public class Room : MonoBehaviour
     }
 
     #endregion
+
+    //--------------------------------------------------
+    public void ChangeFloorMaterial()
+    {
+        int index = Random.Range(0, floorMaterials.Count);
+        ChangeFloorMaterial(index);
+    }
+    
+    //--------------------------------------------------
+    public void ChangeFloorMaterial(int index)
+    {
+        floorMeshR_Cp.material = floorMaterials[index];
+    }
 
     //////////////////////////////////////////////////////////////////////
     // modular method
