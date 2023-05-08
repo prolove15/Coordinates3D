@@ -58,6 +58,8 @@ public class Room : MonoBehaviour
     //-------------------------------------------------- private fields
     MeshRenderer floorMeshR_Cp;
 
+    Dictionary<Hash128, int> wallVisibleStates = new Dictionary<Hash128, int>();
+
     #endregion
 
     //////////////////////////////////////////////////////////////////////
@@ -107,6 +109,8 @@ public class Room : MonoBehaviour
         InitRoomLayout();
 
         InitWallsVertices();
+
+        InitWallVisibleStates();
 
         gameState = GameState_En.Inited;
     }
@@ -162,6 +166,21 @@ public class Room : MonoBehaviour
         }
     }
 
+    //--------------------------------------------------
+    public void InitWallVisibleStates()
+    {
+        for(int i = 0; i < wall_Tfs.Count; i++)
+        {
+            Hash128 wallID_tp = Hash128.Parse(wall_Tfs[i].name);
+
+            wallVisibleStates[wallID_tp] = i;
+
+            EventHandler_Custom wallEventH_Cp_tp = wall_Tfs[i].GetComponent<EventHandler_Custom>();
+            wallEventH_Cp_tp.room_Cp = this;
+            wallEventH_Cp_tp.identity = wallID_tp;
+        }
+    }
+
     #endregion
 
     //////////////////////////////////////////////////////////////////////
@@ -188,6 +207,14 @@ public class Room : MonoBehaviour
     public void ChangeFloorMaterial(int index)
     {
         floorMeshR_Cp.material = floorMaterials[index];
+    }
+
+    //--------------------------------------------------
+    public void ChangedWallVisibleState(Hash128 wallID, bool state)
+    {
+        int wallIndex = wallVisibleStates[wallID];
+
+        furnitureManager_Cp.SetActiveStateFurniture(wallIndex, state);
     }
 
     //////////////////////////////////////////////////////////////////////

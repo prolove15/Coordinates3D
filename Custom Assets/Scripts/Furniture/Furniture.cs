@@ -281,6 +281,12 @@ public class Furniture : MonoBehaviour
     #endregion
 
     //--------------------------------------------------
+    public void SetActiveState(bool flag)
+    {
+        gameObject.SetActive(flag);
+    }
+
+    //--------------------------------------------------
     public void SetEnableFurnitureRenderer(bool flag)
     {
         for(int i = 0; i < renderer_Cps.Count; i++)

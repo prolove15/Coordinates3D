@@ -409,6 +409,12 @@ public class FurnitureManager : MonoBehaviour
     }
 
     //--------------------------------------------------
+    public void SetActiveStateFurniture(int index, bool state)
+    {
+        furniture_Cps[index].gameObject.SetActive(state);
+    }
+
+    //--------------------------------------------------
     public static Vector3 GetSizeOfGameObject(GameObject object_pr)
     {
         Vector3 size_tp = new Vector3();
