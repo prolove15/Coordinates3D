@@ -16,7 +16,7 @@ public class EventHandler_Custom : MonoBehaviour
 
     public Hash128 identity;
 
-    bool m_isVisible;
+    bool m_isVisible = true;
 
     #endregion
 
@@ -58,20 +58,13 @@ public class EventHandler_Custom : MonoBehaviour
 
     void LateUpdate()
     {
-        // SetVisibleState();
+        SetVisibleState();
     }
 
     void SetVisibleState()
     {
         float dot = Vector3.Dot(transform.position - Camera.main.transform.position, transform.up);
-        if(dot > 0f)
-        {
-            isVisible = true;
-        }
-        else
-        {
-            isVisible = false;
-        }
+        isVisible = dot > 0f ? false : true;
     }
 
     #endregion

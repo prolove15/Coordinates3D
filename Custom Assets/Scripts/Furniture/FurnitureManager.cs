@@ -224,6 +224,11 @@ public class FurnitureManager : MonoBehaviour
         wallFurniture_Cp_tp.wallID = wallID_tp;
 
         wallFurniture_Cps.Add(wallFurniture_Cp_tp);
+        
+        if(!room_Cp.wallEventHandlers[wallID_tp].isVisible)
+        {
+            wallFurniture_Cp_tp.gameObject.SetActive(false);
+        }
     }
 
     //--------------------------------------------------
@@ -409,9 +414,16 @@ public class FurnitureManager : MonoBehaviour
     }
 
     //--------------------------------------------------
-    public void SetActiveStateFurniture(int index, bool state)
+    public void SetWallFurnitureActiveState(int index, bool state)
     {
-        furniture_Cps[index].gameObject.SetActive(state);
+        for(int i = 0; i < wallFurniture_Cps.Count; i++)
+        {
+            if(wallFurniture_Cps[i].wallID == index)
+            {
+                wallFurniture_Cps[i].gameObject.SetActive(state);
+                break;
+            }
+        }
     }
 
     //--------------------------------------------------

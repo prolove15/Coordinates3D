@@ -53,6 +53,8 @@ public class Room : MonoBehaviour
 
     public List<List<Vector3>> wallsVertices = new List<List<Vector3>>();
 
+    public List<EventHandler_Custom> wallEventHandlers = new List<EventHandler_Custom>();
+
     public float wallHeight = 5f;
 
     //-------------------------------------------------- private fields
@@ -178,6 +180,7 @@ public class Room : MonoBehaviour
             EventHandler_Custom wallEventH_Cp_tp = wall_Tfs[i].GetComponent<EventHandler_Custom>();
             wallEventH_Cp_tp.room_Cp = this;
             wallEventH_Cp_tp.identity = wallID_tp;
+            wallEventHandlers.Add(wallEventH_Cp_tp);
         }
     }
 
@@ -214,7 +217,7 @@ public class Room : MonoBehaviour
     {
         int wallIndex = wallVisibleStates[wallID];
 
-        furnitureManager_Cp.SetActiveStateFurniture(wallIndex, state);
+        furnitureManager_Cp.SetWallFurnitureActiveState(wallIndex, state);
     }
 
     //////////////////////////////////////////////////////////////////////
