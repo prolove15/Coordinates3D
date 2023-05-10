@@ -206,6 +206,13 @@ public class FurnitureManager : MonoBehaviour
     }
 
     //--------------------------------------------------
+    public void InstantWallFurniture()
+    {
+        int index_tp = Random.Range(0, wallFurniture_Pfs.Count);
+        InstantWallFurniture(index_tp);
+    }
+
+    //--------------------------------------------------
     public void InstantWallFurniture(int index)
     {
         GameObject wallFurniture_Pf_pr = wallFurniture_Pfs[index];
@@ -228,14 +235,8 @@ public class FurnitureManager : MonoBehaviour
         if(!room_Cp.wallEventHandlers[wallID_tp].isVisible)
         {
             wallFurniture_Cp_tp.gameObject.SetActive(false);
+            // if(wallID_tp)
         }
-    }
-
-    //--------------------------------------------------
-    public void InstantWallFurniture()
-    {
-        int index_tp = Random.Range(0, wallFurniture_Pfs.Count);
-        InstantWallFurniture(index_tp);
     }
 
     #endregion
@@ -421,7 +422,6 @@ public class FurnitureManager : MonoBehaviour
             if(wallFurniture_Cps[i].wallID == index)
             {
                 wallFurniture_Cps[i].gameObject.SetActive(state);
-                break;
             }
         }
     }

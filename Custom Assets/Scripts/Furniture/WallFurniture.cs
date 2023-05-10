@@ -32,7 +32,7 @@ public class WallFurniture : Furniture
     //-------------------------------------------------- private fields
     Vector3 wallFurnitureSize;
 
-    int m_wallID;
+    public int m_wallID;
 
     #endregion
 
